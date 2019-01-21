@@ -1,10 +1,9 @@
 // test_template.cpp - test template library
-#include "ensure.h"
-#include "template.h"
+#include "test_prob_normal.h"
 
 int main(int ac, const char* av[])
 {
-	ensure(answer == 42);
+	test_prob_normal<double>();
 
 	return 0;
 }

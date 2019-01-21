@@ -4,11 +4,14 @@ cmake_minimum_required(VERSION 3.10)
 project(libfms VERSION 0.0.1 LANGUAGES CXX)
 
 # Global project properties.
+include(BuildType.cmake)
+include_directories(include) 
 
 add_subdirectory(src)
 
 enable_testing()
 add_test(NAME TestTemplate COMMAND test_template)
+add_test(NAME TestProb COMMAND test_prob)
 
 #add_library(libfms src/template/template.cpp)
 #target_compile_features(libfms PRIVATE cxx_std_17)

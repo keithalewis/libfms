@@ -5,17 +5,17 @@
 #if defined(NENSURE)
 	#define ensure(x)
 #elif defined(ENSURE_ASSERT)
-#include <cassert>
+	#include <cassert>
 	#define ensure(x) assert(x)
 #elif defined(_MSC_VER)
-void __stdcall __debugbreak(void);
-	#define ensure(x) __debugbreak()
+	void __stdcall __debugbreak(void);
+	#define ensure(x) if (!(x)) __debugbreak(); else (void)0;
 #elif defined(__GNUC__)
-	#define ensure(x) __builtin_trap()
+	#define ensure(x) if (!(x)) __builtin_trap(); else (void)0;
 #elif defined(__clang__)
-	#define ensure(x) __builtin_debugtrap()
+	#define ensure(x) if (!(x)) __builtin_debugtrap(); else (void)0;
 #else
-int raise(int);
-	#define ensure(x) raise(SIGTRAP);
+	int raise(int);
+	#define ensure(x) if (!(x)) raise(SIGTRAP); else (void)0;
 #endif
 

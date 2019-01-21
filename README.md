@@ -31,3 +31,7 @@ To turn a header file into a module in MSVC create a `.cpp` file including the h
 
 Compile with `cl -experimental:module -module:export .\mymodule.cpp -module:mymodule file -c /EHsc /nologo`
 to create a `mymodule.ifc`. Link this and the corresponding `.obj` files.
+
+## Set compiler on Ubuntu
+
+`sudo update-alternatives --config c++`
