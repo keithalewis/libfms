@@ -5,13 +5,18 @@ project(libfms VERSION 0.0.1 LANGUAGES CXX)
 
 # Global project properties.
 
-add_library(libfms src/template/template.cpp)
-target_compile_features(libfms PRIVATE cxx_std_17)
+add_subdirectory(src)
 
-target_include_directories(libfms
-    PUBLIC 
-        $<INSTALL_INTERFACE:include>    
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/src
-)
+enable_testing()
+add_test(NAME TestTemplate COMMAND test_template)
+
+#add_library(libfms src/template/template.cpp)
+#target_compile_features(libfms PRIVATE cxx_std_17)
+#
+#target_include_directories(libfms
+#    PUBLIC 
+#        $<INSTALL_INTERFACE:include>    
+#        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+#    PRIVATE
+#        ${CMAKE_CURRENT_SOURCE_DIR}/src
+#)
