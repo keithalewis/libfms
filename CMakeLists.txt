@@ -3,6 +3,9 @@
 cmake_minimum_required(VERSION 3.10)
 project(libfms VERSION 0.0.1 LANGUAGES CXX)
 
+message("PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")
+message("PROJECT_BINARY_DIR: ${PROJECT_BINARY_DIR}")
+
 # Global project properties.
 include(BuildType.cmake)
 include_directories(include) 
