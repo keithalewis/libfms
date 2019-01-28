@@ -4,6 +4,7 @@ image: Visual Studio 2017
 
 platform:
   - x64
+  - Win32
  
 configuration:
   - Release
@@ -18,5 +19,16 @@ before_build:
 build:
   project: $(APPVEYOR_BUILD_FOLDER)\$(APPVEYOR_PROJECT_NAME).sln
 
+#Cmake will autodetect the compiler, but we set the arch
+before_build:
+  - cmake -H. -BBuild -A%PLATFORM%
+
+# build with MSBuild
+build:
+  project: Build\libfms.sln        # path to Visual Studio solution or project
+  parallel: true                        # enable MSBuild parallel builds
+  verbosity: normal                     # MSBuild verbosity level {quiet|minimal|normal|detailed}
+
 test_script:
-  - '%APPVEYOR_BUILD_FOLDER%\%CONFIGURATION%\tests.exe'
+  - cd Build
+  - ctest -V -j 2 -C %CONFIGURATION%
