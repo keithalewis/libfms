@@ -8,7 +8,7 @@
 	#include <cassert>
 	#define ensure(x) assert(x)
 #elif defined(_MSC_VER)
-	void __stdcall __debugbreak(void);
+	#include <intrin.h>
 	#define ensure(x) if (!(x)) __debugbreak(); else (void)0;
 #elif defined(__GNUC__)
 	#define ensure(x) if (!(x)) __builtin_trap(); else (void)0;
