@@ -15,7 +15,7 @@ install:
 
 #Cmake will autodetect the compiler, but we set the arch
 before_build:
-    - cmake -H. -BBuild -A%PLATFORM%
+    - cmake -H. -BBuild -A%PLATFORM% -DCMAKE_CXXFLAGS='-DENSURE_ASSERT'
 
 # build with MSBuild
 build:
