@@ -26,3 +26,12 @@ build:
 test_script:
   - cd Build
   - ctest -V -j 2 -C %CONFIGURATION%
+
+notifications:
+- provider: Email
+  to:
+  - kal@kalx.net
+  subject: Build failure
+  on_build_success: false
+  on_build_failure: true
+  on_build_status_changed: false
