@@ -1,0 +1,37 @@
+version: '1.0.{build}'
+
+image: Visual Studio 2017
+
+platform:
+  - x64
+  - Win32
+ 
+configuration:
+  - Release
+  - Debug
+
+install:
+    - git submodule update --init --recursive
+
+#Cmake will autodetect the compiler, but we set the arch
+before_build:
+    - cmake -H. -BBuild -A%PLATFORM% -DCMAKE_CXXFLAGS='-DENSURE_ASSERT'
+
+# build with MSBuild
+build:
+  project: Build\libfms.sln        # path to Visual Studio solution or project
+  parallel: true                        # enable MSBuild parallel builds
+  verbosity: normal                     # MSBuild verbosity level {quiet|minimal|normal|detailed}
+
+test_script:
+  - cd Build
+  - ctest -V -j 2 -C %CONFIGURATION%
+
+notifications:
+- provider: Email
+  to:
+  - kal@kalx.net
+  subject: Build failure
+  on_build_success: false
+  on_build_failure: true
+  on_build_status_changed: false

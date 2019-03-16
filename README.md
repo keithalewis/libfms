@@ -1,4 +1,5 @@
-# Finance, Mathematics, Software
+# Finance, Mathematics, Software <img src="https://ci.appveyor.com/api/projects/status/q47rcuonkk4unyam/branch/master?svg=true">
+
 
 ## Layout
 
