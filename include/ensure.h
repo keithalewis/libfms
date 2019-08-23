@@ -1,6 +1,6 @@
-// ensure.h - Like assert but calls debugger breakpoint. Define NENSURE to disable, ENSURE_ASSERT to call assert.
+// ensure.h - Like assert but calls debugger breakpoint.
+// Define NENSURE to disable, ENSURE_ASSERT to call assert.
 #pragma once
-#include <cassert>
 
 #if defined(NENSURE)
 	#define ensure(x)
